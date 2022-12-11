@@ -15,8 +15,10 @@ Puede escoger otro código fuente si este se le hace muy complejo, pero dentro d
 Para este proyecto debe tomar el código base del bomberman y hacerle unas modificaciones.
 
 debe obtener el estado inicial (número de vidas, nivel y tiempo para terminar el nivel) desde un archivo de texto
+
 debe guardar y consultar los puntos a una base de datos
 debe generar excepciones cuando la lectura del archivo no sea correcta
+
 debe inventar un poder, que estara en un bloque aleatorio del tablero. Se califica la creatividad del poder (correr mas rapido, lanzar fuego, etc... lo que pueda)
 El proyecto se estrega el 15 de diciembre y ese mismo día se sustenta en el horario de clase
 

@@ -16,11 +16,11 @@ import com.carlosflorencio.bomberman.gui.InfoDialog;
 public class Game extends JMenu {
 
 	public Frame frame;
-	
+
 	public Game(Frame frame) {
 		super("Game");
 		this.frame = frame;
-		
+
 		/*
 		 * New Game
 		 */
@@ -28,7 +28,7 @@ public class Game extends JMenu {
 		newgame.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_N, ActionEvent.CTRL_MASK));
 		newgame.addActionListener(new MenuActionListener(frame));
 		add(newgame);
-		
+
 		/*
 		 * Scores
 		 */
@@ -36,7 +36,7 @@ public class Game extends JMenu {
 		scores.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_T, ActionEvent.CTRL_MASK));
 		scores.addActionListener(new MenuActionListener(frame));
 		add(scores);
-		
+
 		/*
 		 * Codes
 		 */
@@ -45,29 +45,30 @@ public class Game extends JMenu {
 		codes.addActionListener(new MenuActionListener(frame));
 		add(codes);
 	}
-	
+
 	class MenuActionListener implements ActionListener {
 		public Frame _frame;
+
 		public MenuActionListener(Frame frame) {
 			_frame = frame;
 		}
-		
-		  @Override
-		public void actionPerformed(ActionEvent e) {
-			  
-			  if(e.getActionCommand().equals("New Game")) {
-				  _frame.newGame();
-			  }
-			  
-			  if(e.getActionCommand().equals("Top Scores")) {
-				  new InfoDialog(_frame, "Top Scores", "If i had more time..", JOptionPane.INFORMATION_MESSAGE);
-			  }
-			  
-			  if(e.getActionCommand().equals("Codes")) {
-				  new CodeDialog(_frame);
-			  }
 
-		  }
+		@Override
+		public void actionPerformed(ActionEvent e) {
+
+			if (e.getActionCommand().equals("New Game")) {
+				_frame.newGame();
+			}
+			// TODO: Aquí estan los top puntajes
+			if (e.getActionCommand().equals("Top Scores")) {
+				new InfoDialog(_frame, "Top Scores", "If i had more time..", JOptionPane.INFORMATION_MESSAGE);
+			}
+
+			if (e.getActionCommand().equals("Codes")) {
+				new CodeDialog(_frame);
+			}
+
 		}
+	}
 
 }
