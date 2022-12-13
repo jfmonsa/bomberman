@@ -35,8 +35,8 @@ public class Board implements IRender {
 
 	private int _screenToShow = -1; // 1:endgame, 2:changelevel, 3:paused
 
-	private int _time = Game.TIME; // TODO: Mover lo inicial
-	private int _points = Game.POINTS;
+	private int _time = Game.TIME;
+	private static int _points = Game.POINTS;
 	private int _lives = Game.LIVES;
 
 	public Board(Game game, Keyboard input, Screen screen) {
@@ -44,7 +44,7 @@ public class Board implements IRender {
 		_input = input;
 		_screen = screen;
 
-		changeLevel(1); // start in level 1
+		changeLevel(ReadInitialConfigs.number_level); // TODO start in level 1
 	}
 
 	/*
@@ -475,7 +475,8 @@ public class Board implements IRender {
 			return this._time--;
 	}
 
-	public int getPoints() {
+	// TODO
+	public static int getPoints() {
 		return _points;
 	}
 

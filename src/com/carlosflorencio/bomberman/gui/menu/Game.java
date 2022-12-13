@@ -1,5 +1,7 @@
 package com.carlosflorencio.bomberman.gui.menu;
 
+import com.carlosflorencio.bomberman.DataBase.BaseDatos;
+
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
@@ -61,7 +63,11 @@ public class Game extends JMenu {
 			}
 			// TODO: Aquí estan los top puntajes
 			if (e.getActionCommand().equals("Top Scores")) {
-				new InfoDialog(_frame, "Top Scores", "If i had more time..", JOptionPane.INFORMATION_MESSAGE);
+				// new InfoDialog(_frame, "Top Scores", "If i had more time..",
+				// JOptionPane.INFORMATION_MESSAGE);
+				// TODO: Matarnos todos :d
+				BaseDatos bd = new BaseDatos();
+
 			}
 
 			if (e.getActionCommand().equals("Codes")) {

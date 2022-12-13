@@ -1,7 +1,6 @@
 package com.carlosflorencio.bomberman;
 
 //leer archivo
-import com.carlosflorencio.bomberman.ReadInitialConfigs;
 import java.awt.Canvas;
 import java.awt.Graphics;
 import java.awt.image.BufferStrategy;
@@ -35,9 +34,9 @@ public class Game extends Canvas {
 	private static final double PLAYERSPEED = 1.0;
 
 	public static int TIME = ReadInitialConfigs.time;
-	public static int POINTS = ReadInitialConfigs.points;
 	public static int LIVES = ReadInitialConfigs.lives;
 
+	public static int POINTS = 0;
 	protected static int SCREENDELAY = 3;
 
 	// can be modified with bonus

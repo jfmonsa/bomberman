@@ -12,19 +12,16 @@ import java.util.StringTokenizer;
 /* // initial configs
 	 * the initial configs are saved in res/initial_configs.txt, the values are
 	 * storage like this example:
-	 * 200#0#3
-	 * where 200 are the times; 0 are the points; and 3 are the lives*/
+	 * 200#3#3
+	 * where 200 is the time; 0 is the number of level; and 3 is the number of lives*/
+
+import javax.swing.JOptionPane;
 
 public class ReadInitialConfigs {
     public static int time;
-    public static int points;
+    public static int number_level;
     public static int lives;
 
-    /*
-     * public static final int TIME = ReadInitialConfigs.getTime();
-     * public static final int POINTS = ReadInitialConfigs.getPoints();
-     * public static final int LIVES =
-     */
     ReadInitialConfigs() {
         readInitialConf();
     }
@@ -36,12 +33,18 @@ public class ReadInitialConfigs {
 
             BufferedReader buffer = new BufferedReader(lector);
             String linea = "";
+
             while ((linea = buffer.readLine()) != null) {
                 StringTokenizer tokens = new StringTokenizer(linea, "#");
 
                 ReadInitialConfigs.time = Integer.parseInt(tokens.nextToken());
-                ReadInitialConfigs.points = Integer.parseInt(tokens.nextToken());
+                ReadInitialConfigs.number_level = Integer.parseInt(tokens.nextToken());
                 ReadInitialConfigs.lives = Integer.parseInt(tokens.nextToken());
+            }
+
+            if (!(new File("./res/levels/Level" + number_level + ".txt")).exists()) {
+                // Si el nivel no existe, lo pongo en el nivel 1 por default
+                ReadInitialConfigs.number_level = 1;
             }
             lector.close();
         } catch (FileNotFoundException e) {
