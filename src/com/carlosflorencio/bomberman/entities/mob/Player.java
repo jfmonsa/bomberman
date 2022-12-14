@@ -12,6 +12,7 @@ import com.carlosflorencio.bomberman.entities.Message;
 import com.carlosflorencio.bomberman.entities.bomb.Bomb;
 import com.carlosflorencio.bomberman.entities.bomb.DirectionalExplosion;
 import com.carlosflorencio.bomberman.entities.mob.enemy.Enemy;
+import com.carlosflorencio.bomberman.entities.tile.powerup.PowerUpCustomBallom;
 import com.carlosflorencio.bomberman.entities.tile.powerup.Powerup;
 import com.carlosflorencio.bomberman.graphics.Screen;
 import com.carlosflorencio.bomberman.graphics.Sprite;
@@ -216,6 +217,7 @@ public class Player extends Mob {
 			return false;
 		}
 
+		// TODO
 		if (e instanceof Enemy) {
 			kill();
 			return true;
@@ -259,38 +261,66 @@ public class Player extends Mob {
 	 * |--------------------------------------------------------------------------
 	 */
 	// TODO
+	private boolean encontroCustomPoder = false;
+
 	private void chooseSprite() {
-		switch (_direction) {
-			case 0:
-				_sprite = Sprite.player_up;
-				if (_moving) {
-					_sprite = Sprite.movingSprite(Sprite.player_up_1, Sprite.player_up_2, _animate, 20);
-				}
-				break;
-			case 1:
-				_sprite = Sprite.player_right;
-				if (_moving) {
-					_sprite = Sprite.movingSprite(Sprite.player_right_1, Sprite.player_right_2, _animate, 20);
-				}
-				break;
-			case 2:
-				_sprite = Sprite.player_down;
-				if (_moving) {
-					_sprite = Sprite.movingSprite(Sprite.player_down_1, Sprite.player_down_2, _animate, 20);
-				}
-				break;
-			case 3:
-				_sprite = Sprite.player_left;
-				if (_moving) {
-					_sprite = Sprite.movingSprite(Sprite.player_left_1, Sprite.player_left_2, _animate, 20);
-				}
-				break;
-			default:
-				_sprite = Sprite.player_right;
-				if (_moving) {
-					_sprite = Sprite.movingSprite(Sprite.player_right_1, Sprite.player_right_2, _animate, 20);
-				}
-				break;
+
+		Powerup p;
+		for (int i = 0; i < _powerups.size(); i++) {
+			p = _powerups.get(i);
+			System.out.println(Game.LIVES);
+			if (p.isActive() == true && (p instanceof PowerUpCustomBallom) && Board.getLives() == 3) {
+				encontroCustomPoder = true;
+			}
 		}
+
+		if (encontroCustomPoder) {
+			switch (_direction) {
+				case 0:
+				case 1:
+					_sprite = Sprite.movingSprite(Sprite.balloom_right1, Sprite.balloom_right2, Sprite.balloom_right3,
+							_animate, 60);
+					break;
+				case 2:
+				case 3:
+					_sprite = Sprite.movingSprite(Sprite.balloom_left1, Sprite.balloom_left2, Sprite.balloom_left3,
+							_animate, 60);
+					break;
+			}
+		} else {
+			switch (_direction) {
+				case 0:
+					_sprite = Sprite.player_up;
+					if (_moving) {
+						_sprite = Sprite.movingSprite(Sprite.player_up_1, Sprite.player_up_2, _animate, 20);
+					}
+					break;
+				case 1:
+					_sprite = Sprite.player_right;
+					if (_moving) {
+						_sprite = Sprite.movingSprite(Sprite.player_right_1, Sprite.player_right_2, _animate, 20);
+					}
+					break;
+				case 2:
+					_sprite = Sprite.player_down;
+					if (_moving) {
+						_sprite = Sprite.movingSprite(Sprite.player_down_1, Sprite.player_down_2, _animate, 20);
+					}
+					break;
+				case 3:
+					_sprite = Sprite.player_left;
+					if (_moving) {
+						_sprite = Sprite.movingSprite(Sprite.player_left_1, Sprite.player_left_2, _animate, 20);
+					}
+					break;
+				default:
+					_sprite = Sprite.player_right;
+					if (_moving) {
+						_sprite = Sprite.movingSprite(Sprite.player_right_1, Sprite.player_right_2, _animate, 20);
+					}
+					break;
+			}
+		}
+
 	}
 }

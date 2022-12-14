@@ -193,6 +193,12 @@ public class Game extends Canvas {
 		bombRate += i;
 	}
 
+	public static void hesoyam() {
+		Game.addPlayerSpeed(0.1); // Aumenta velocidad 10%
+		// Game.LIVES += 3; // Aumenta 3 vidas
+		// Game.POINTS += 1000; // Le da mil puntos
+	}
+
 	// screen delay
 	public int getScreenDelay() {
 		return _screenDelay;

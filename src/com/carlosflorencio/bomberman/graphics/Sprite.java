@@ -53,10 +53,6 @@ public class Sprite {
 	 * |--------------------------------------------------------------------------
 	 */
 
-	/*
-	 * -> El poder: Yo me vuelvo un fantasmita por x segundos, y si toco a los
-	 * fantasmas los mato, le aumenta la velocidad un +10%
-	 */
 	// BALLOM
 	public static Sprite balloom_left1 = new Sprite(16, 9, 0, SpriteSheet.tiles, 16, 16);
 	public static Sprite balloom_left2 = new Sprite(16, 9, 1, SpriteSheet.tiles, 16, 16);
@@ -180,6 +176,10 @@ public class Sprite {
 	public static Sprite powerup_detonator = new Sprite(16, 4, 10, SpriteSheet.tiles, 16, 16);
 	public static Sprite powerup_bombpass = new Sprite(16, 5, 10, SpriteSheet.tiles, 16, 16);
 	public static Sprite powerup_flamepass = new Sprite(16, 6, 10, SpriteSheet.tiles, 16, 16);
+	/*
+	 * Custom
+	 */
+	public static Sprite powerup_custom = new Sprite(16, 7, 10, SpriteSheet.tiles, 16, 16);
 
 	public Sprite(int size, int x, int y, SpriteSheet sheet, int rw, int rh) {
 		SIZE = size;

@@ -19,6 +19,8 @@ import com.carlosflorencio.bomberman.entities.tile.GrassTile;
 import com.carlosflorencio.bomberman.entities.tile.PortalTile;
 import com.carlosflorencio.bomberman.entities.tile.WallTile;
 import com.carlosflorencio.bomberman.entities.tile.destroyable.BrickTile;
+import com.carlosflorencio.bomberman.entities.tile.powerup.PowerUpCustomBallom;
+import com.carlosflorencio.bomberman.entities.tile.powerup.Powerup;
 import com.carlosflorencio.bomberman.entities.tile.powerup.PowerupBombs;
 import com.carlosflorencio.bomberman.entities.tile.powerup.PowerupFlames;
 import com.carlosflorencio.bomberman.entities.tile.powerup.PowerupSpeed;
@@ -155,6 +157,55 @@ public class FileLevel extends Level {
 						new Kondoria(Coordinates.tileToPixel(x), Coordinates.tileToPixel(y) + Game.TILES_SIZE, _board));
 				_board.addEntitie(pos, new GrassTile(x, y, Sprite.grass));
 				break;
+			case 'y':
+				layer = new LayeredEntity(x, y,
+						new GrassTile(x, y, Sprite.grass),
+						new BrickTile(x, y, Sprite.brick));
+
+				if (_board.isPowerupUsed(x, y, _level) == false) {
+					layer.addBeforeTop(new PowerUpCustomBallom(x, y, _level, Sprite.powerup_custom));
+				}
+
+				_board.addEntitie(pos, layer);
+				break;
+			/*
+			 * case '#':
+			 * _board.addEntitie(pos, new WallTile(x, y, Sprite.wall));
+			 * break;
+			 * case 'b':
+			 * LayeredEntity layer = new LayeredEntity(x, y,
+			 * new GrassTile(x, y, Sprite.grass),
+			 * new BrickTile(x, y, Sprite.brick));
+			 * 
+			 * if (_board.isPowerupUsed(x, y, _level) == false) {
+			 * layer.addBeforeTop(new PowerupBombs(x, y, _level, Sprite.powerup_bombs));
+			 * }
+			 * 
+			 * _board.addEntitie(pos, layer);
+			 * break;
+			 * case 's':
+			 * layer = new LayeredEntity(x, y,
+			 * new GrassTile(x, y, Sprite.grass),
+			 * new BrickTile(x, y, Sprite.brick));
+			 * 
+			 * if (_board.isPowerupUsed(x, y, _level) == false) {
+			 * layer.addBeforeTop(new PowerupSpeed(x, y, _level, Sprite.powerup_speed));
+			 * }
+			 * 
+			 * _board.addEntitie(pos, layer);
+			 * break;
+			 * case 'f':
+			 * layer = new LayeredEntity(x, y,
+			 * new GrassTile(x, y, Sprite.grass),
+			 * new BrickTile(x, y, Sprite.brick));
+			 * 
+			 * if (_board.isPowerupUsed(x, y, _level) == false) {
+			 * layer.addBeforeTop(new PowerupFlames(x, y, _level, Sprite.powerup_flames));
+			 * }
+			 * 
+			 * _board.addEntitie(pos, layer);
+			 * break;
+			 */
 			default:
 				_board.addEntitie(pos, new GrassTile(x, y, Sprite.grass));
 				break;

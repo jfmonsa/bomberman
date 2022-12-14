@@ -9,6 +9,7 @@ public class PowerUpCustomBallom extends Powerup {
 
     public PowerUpCustomBallom(int x, int y, int level, Sprite sprite) {
         super(x, y, level, sprite);
+        setValues();
     }
 
     @Override
@@ -26,7 +27,7 @@ public class PowerUpCustomBallom extends Powerup {
     @Override
     public void setValues() {
         _active = true;
-        Game.addPlayerSpeed(0.1); // Aumenta velocidad 10%
+        Game.hesoyam();
     }
 
 }
