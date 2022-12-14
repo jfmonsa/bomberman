@@ -131,7 +131,7 @@ public class Board implements IRender {
 		_bombs.clear();
 		_messages.clear();
 
-		try { // TODO
+		try {
 			_level = new FileLevel("levels/Level" + level + ".txt", this);
 			_entities = new Entity[_level.getHeight() * _level.getWidth()];
 

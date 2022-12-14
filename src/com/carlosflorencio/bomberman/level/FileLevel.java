@@ -30,12 +30,10 @@ public class FileLevel extends Level {
 
 	public FileLevel(String path, Board board) throws LoadLevelException {
 		super(path, board);
-
 	}
 
 	@Override
 	public void loadLevel(String path) throws LoadLevelException {
-
 		try {
 			URL absPath = FileLevel.class.getResource("/" + path);
 
@@ -63,62 +61,20 @@ public class FileLevel extends Level {
 
 	@Override
 	public void createEntities() {
-		int[] rand_point = genRandPoint();
-
 		for (int y = 0; y < getHeight(); y++) {
 			for (int x = 0; x < getWidth(); x++) {
-				if (x == rand_point[0] && y == rand_point[1]) {
-					System.out.println("x: " + rand_point[0] + " , y:" + rand_point[1]);
-					addLevelEntity('y', x, y);
-				} else {
-					addLevelEntity(_lineTiles[y].charAt(x), rand_point[1], y);
-				}
+				addLevelEntity(_lineTiles[y].charAt(x), x, y);
 			}
 		}
-	}
-
-	public Boolean isEmpty(int x_rand, int y_rand) {
-		Boolean b = false;
-
-		for (int y = 0; y < getHeight(); y++) {
-			for (int x = 0; x < getWidth(); x++) {
-				if (x == x_rand && y == y_rand) {
-					b = _lineTiles[y].charAt(x) == ' ';
-					System.out.println(b);
-					return b;
-				}
-				addLevelEntity(_lineTiles[y].charAt(x), x_rand, y_rand);
-			}
-		}
-		return b;
-
-	}
-
-	public int[] genRandPoint() {
-		int min_x = 2;
-		int max_x = _width - 1;
-		int min_y = 2;
-		int max_y = _height - 1;
-		int rand_x = (int) Math.floor((Math.random() * (max_x - min_x + 1) + min_x));
-		int rand_y = (int) Math.floor((Math.random() * (max_y - min_y + 1) + min_y));
-
-		if (!isEmpty(rand_x, rand_y)) {
-			return genRandPoint();
-		} else {
-			int[] rand_point = { rand_x, rand_y };
-			return rand_point;
-		}
-
 	}
 
 	public void addLevelEntity(char c, int x, int y) {
 		int pos = x + y * getWidth();
 
-		switch (c) {
+		switch (c) { // TODO: minimize this method
 			case '#':
 				_board.addEntitie(pos, new WallTile(x, y, Sprite.wall));
 				break;
-
 			case 'b':
 				LayeredEntity layer = new LayeredEntity(x, y,
 						new GrassTile(x, y, Sprite.grass),
@@ -130,7 +86,6 @@ public class FileLevel extends Level {
 
 				_board.addEntitie(pos, layer);
 				break;
-
 			case 's':
 				layer = new LayeredEntity(x, y,
 						new GrassTile(x, y, Sprite.grass),
@@ -200,18 +155,6 @@ public class FileLevel extends Level {
 						new Kondoria(Coordinates.tileToPixel(x), Coordinates.tileToPixel(y) + Game.TILES_SIZE, _board));
 				_board.addEntitie(pos, new GrassTile(x, y, Sprite.grass));
 				break;
-
-			/*
-			 * case 'y':
-			 * layer = new LayeredEntity(x, y,
-			 * new GrassTile(x, y, Sprite.grass),
-			 * new BrickTile(x, y, Sprite.brick));
-			 * 
-			 * if (_board.isPowerupUsed(x, y, _level) == false) {
-			 * layer.addBeforeTop(new PowerupBombs(x, y, _level, Sprite.powerup_bombs));
-			 * }
-			 * break;
-			 */
 			default:
 				_board.addEntitie(pos, new GrassTile(x, y, Sprite.grass));
 				break;
