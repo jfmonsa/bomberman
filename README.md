@@ -31,3 +31,8 @@ La nota es ponderada. La nota de mi revisión del código la multiplico por un f
 Todos deben estar en la capacidad de responder todo, nada de "ahhh es que yo hice fue esto y esa parte no la hice". En caso de no responder lo que se le pregunte podria sacar 0
 
 En lo posible use lo que vemos en clase.
+
+# Respecto al poder xd
+
+-> El poder: Yo me vuelvo un fantasmita por x segundos, y si toco a los fantasmas los mato, le aumenta la velocidad un +10%
+-> El antipoder: Los fantasmitas se vuelven muñecos, adoptan la misma modalidad del que lo persigue a uno pero con velocidad reducidad y en ese lapso de segundos no puedes tirar bombas; (Y depronto los fantsmitas tiran bombas)

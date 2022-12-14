@@ -15,8 +15,6 @@ import java.util.StringTokenizer;
 	 * 200#3#3
 	 * where 200 is the time; 0 is the number of level; and 3 is the number of lives*/
 
-import javax.swing.JOptionPane;
-
 public class ReadInitialConfigs {
     public static int time;
     public static int number_level;

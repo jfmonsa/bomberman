@@ -9,13 +9,13 @@ public abstract class Level implements ILevel {
 	protected String[] _lineTiles;
 	protected Board _board;
 
-	protected static String[] codes = { //TODO: change this code system to actualy load the code from each level.txt
-		"dnibpb5uqy",
-		"cuq0vaxstb",
-		"38y418wriq",
-		"34h8k0chcs",
-		"9qztxh6l4s",
-		};
+	protected static String[] codes = { // TODO: change this code system to actualy load the code from each level.txt
+			"dnibpb5uqy",
+			"cuq0vaxstb",
+			"38y418wriq",
+			"34h8k0chcs",
+			"9qztxh6l4s",
+	};
 
 	public Level(String path, Board board) throws LoadLevelException {
 		loadLevel(path);
@@ -24,13 +24,13 @@ public abstract class Level implements ILevel {
 
 	@Override
 	public abstract void loadLevel(String path) throws LoadLevelException;
-	
+
 	public abstract void createEntities();
 
 	/*
-	|--------------------------------------------------------------------------
-	| Codes
-	|--------------------------------------------------------------------------
+	 * |--------------------------------------------------------------------------
+	 * | Codes
+	 * |--------------------------------------------------------------------------
 	 */
 	public int validCode(String str) {
 		for (int i = 0; i < codes.length; i++) {
@@ -40,9 +40,9 @@ public abstract class Level implements ILevel {
 		}
 		return -1;
 	}
-	
+
 	public String getActualCode() {
-		return codes[_level -1];
+		return codes[_level - 1];
 	}
 
 	public int getWidth() {
