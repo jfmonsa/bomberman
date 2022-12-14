@@ -4,7 +4,7 @@
 # # # #*# # #*#*# # # #*#*#*# #
 #   *     ***  *      *   * * #
 # # # # # #*# # #*#*# # # # #*#
-#y         x **1 *  *  1     1#
+#ys        x **1 *  *  1     1#
 # # # # # # # # # #*#1#*# # # #
 #*  *      *  *      *        #
 # # # # #*# # # #*#*# # # # # #
@@ -30,3 +30,4 @@ Powerups:
 b - Powerup Bombs
 f - Powerup Flames
 s - Powerup Speed
+y - Custom Powerup

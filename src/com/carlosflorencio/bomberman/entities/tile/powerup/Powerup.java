@@ -6,6 +6,7 @@ import com.carlosflorencio.bomberman.graphics.Sprite;
 public abstract class Powerup extends Tile {
 
 	protected int _duration = -1; // -1 is infinite, duration in lifes
+
 	protected static boolean _active = false;
 	protected int _level;
 

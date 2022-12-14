@@ -26,6 +26,7 @@ public class PowerUpCustomBallom extends Powerup {
 
     @Override
     public void setValues() {
+        // TODO: Player.Timero.Timero();
         _active = true;
         Game.hesoyam();
     }

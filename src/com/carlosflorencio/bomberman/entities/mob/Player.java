@@ -19,6 +19,12 @@ import com.carlosflorencio.bomberman.graphics.Sprite;
 import com.carlosflorencio.bomberman.input.Keyboard;
 import com.carlosflorencio.bomberman.level.Coordinates;
 
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
+import java.util.Timer;
+import java.util.TimerTask;
+
 public class Player extends Mob {
 
 	private List<Bomb> _bombs;
@@ -40,6 +46,7 @@ public class Player extends Mob {
 	 * | Update & Render
 	 * |--------------------------------------------------------------------------
 	 */
+
 	@Override
 	public void update() {
 		clearBombs();
@@ -123,15 +130,19 @@ public class Player extends Mob {
 	 */
 	@Override
 	public void kill() {
-		if (!_alive)
-			return;
+		boolean activo = isCustomPowerupActive();
 
-		_alive = false;
+		if (activo == false) {
+			if (!_alive)
+				return;
 
-		_board.addLives(-1);
+			_alive = false;
 
-		Message msg = new Message("-1 LIVE", getXMessage(), getYMessage(), 2, Color.white, 14);
-		_board.addMessage(msg);
+			_board.addLives(-1);
+
+			Message msg = new Message("-1 LIVE", getXMessage(), getYMessage(), 2, Color.white, 14);
+			_board.addMessage(msg);
+		}
 	}
 
 	@Override
@@ -141,7 +152,7 @@ public class Player extends Mob {
 		else {
 			if (_bombs.size() == 0) {
 
-				if (_board.getLives() == 0)
+				if (Board.getLives() == 0)
 					_board.endGame();
 				else
 					_board.restartLevel();
@@ -222,8 +233,38 @@ public class Player extends Mob {
 			kill();
 			return true;
 		}
-
 		return true;
+	}
+
+	// Variablespara el custom poder
+	boolean inicioElContadorYa = false;
+	long inicio = 0;
+	long now = 0;
+
+	public Boolean isCustomPowerupActive() {
+		Powerup p;
+
+		for (int i = 0; i < _powerups.size(); i++) {
+			p = _powerups.get(i);
+
+			if (p.isActive() == true && (p instanceof PowerUpCustomBallom)) {
+				if (inicioElContadorYa == false) {
+					inicioElContadorYa = true;
+					inicio = System.currentTimeMillis();
+				}
+				now = System.currentTimeMillis();
+
+				if (inicio + 20000 < now) {
+					return false;
+				}
+				return true;
+			}
+		}
+		return false;
+	}
+
+	public void tiempoAParar() {
+
 	}
 
 	/*
@@ -261,20 +302,9 @@ public class Player extends Mob {
 	 * |--------------------------------------------------------------------------
 	 */
 	// TODO
-	private boolean encontroCustomPoder = false;
-
 	private void chooseSprite() {
 
-		Powerup p;
-		for (int i = 0; i < _powerups.size(); i++) {
-			p = _powerups.get(i);
-			System.out.println(Game.LIVES);
-			if (p.isActive() == true && (p instanceof PowerUpCustomBallom) && Board.getLives() == 3) {
-				encontroCustomPoder = true;
-			}
-		}
-
-		if (encontroCustomPoder) {
+		if (isCustomPowerupActive() /* && Board.getLives() == 3 */) {
 			switch (_direction) {
 				case 0:
 				case 1:
@@ -287,7 +317,9 @@ public class Player extends Mob {
 							_animate, 60);
 					break;
 			}
-		} else {
+		}
+		// Si no tiene puesto el poder
+		else {
 			switch (_direction) {
 				case 0:
 					_sprite = Sprite.player_up;
