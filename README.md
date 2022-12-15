@@ -35,4 +35,8 @@ En lo posible use lo que vemos en clase.
 # Respecto al poder xd
 
 -> El poder: Yo me vuelvo un fantasmita por x segundos, y si toco a los fantasmas los mato, le aumenta la velocidad un +10%
+
+Cuando consumo el poder, mi Skin cambia a la de los enemigos, esto por 20 segundos y si toco los
+fantasmas o las bombas no me haran daño, además mi velocidad aumenta un 10%
+
 -> El antipoder: Los fantasmitas se vuelven muñecos, adoptan la misma modalidad del que lo persigue a uno pero con velocidad reducidad y en ese lapso de segundos no puedes tirar bombas; (Y depronto los fantsmitas tiran bombas)

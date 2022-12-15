@@ -20,7 +20,6 @@ import com.carlosflorencio.bomberman.entities.tile.PortalTile;
 import com.carlosflorencio.bomberman.entities.tile.WallTile;
 import com.carlosflorencio.bomberman.entities.tile.destroyable.BrickTile;
 import com.carlosflorencio.bomberman.entities.tile.powerup.PowerUpCustomBallom;
-import com.carlosflorencio.bomberman.entities.tile.powerup.Powerup;
 import com.carlosflorencio.bomberman.entities.tile.powerup.PowerupBombs;
 import com.carlosflorencio.bomberman.entities.tile.powerup.PowerupFlames;
 import com.carlosflorencio.bomberman.entities.tile.powerup.PowerupSpeed;
@@ -29,6 +28,8 @@ import com.carlosflorencio.bomberman.graphics.Screen;
 import com.carlosflorencio.bomberman.graphics.Sprite;
 
 public class FileLevel extends Level {
+	int rand_x;
+	int rand_y;
 
 	public FileLevel(String path, Board board) throws LoadLevelException {
 		super(path, board);
@@ -63,17 +64,62 @@ public class FileLevel extends Level {
 
 	@Override
 	public void createEntities() {
+		genRandPoint();
 		for (int y = 0; y < getHeight(); y++) {
 			for (int x = 0; x < getWidth(); x++) {
-				addLevelEntity(_lineTiles[y].charAt(x), x, y);
+				// addLevelEntity(_lineTiles[y].charAt(x), x, y);
+				if (x == rand_x && y == rand_y) {
+					System.out.println("x: " + rand_x + " , y:" + rand_y);
+					addLevelEntity('y', rand_x, rand_y);
+				} else {
+					addLevelEntity(_lineTiles[y].charAt(x), x, y);
+				}
 			}
 		}
 	}
 
+	// ======================= Funciones para el punto random =============
+
+	public void genRandPoint() {
+		// Datos para el calculo del punto
+		int min_x = 2;
+		int max_x = _width - 1;
+		int min_y = 2;
+		int max_y = _height - 1;
+		// Punto calculado sin verificar
+		rand_x = (int) Math.floor((Math.random() * (max_x - min_x + 1) + min_x));
+		rand_y = (int) Math.floor((Math.random() * (max_y - min_y + 1) + min_y));
+		System.out.println("Punto parcial: " + rand_x + "," + rand_x);
+
+		// Verificar que este vacio -> si no volver a generar punto
+		if (!isEmpty(rand_x, rand_y)) {
+			genRandPoint();
+		}
+	}
+
+	public Boolean isEmpty(int x_rand, int y_rand) {
+		Boolean b = false;
+
+		for (int y = 0; y < getHeight(); y++) {
+			for (int x = 0; x < getWidth(); x++) {
+				if (x == x_rand && y == y_rand) {
+					b = (_lineTiles[y].charAt(x) == ' ');
+					System.out.println("Esta vacio? " + b);
+					return b;
+				}
+				// addLevelEntity(_lineTiles[y].charAt(x), x_rand, y_rand);
+			}
+		}
+		return b;
+
+	}
+
+	// ======================= Funciones para el punto random =============
+
 	public void addLevelEntity(char c, int x, int y) {
 		int pos = x + y * getWidth();
 
-		switch (c) { // TODO: minimize this method
+		switch (c) {
 			case '#':
 				_board.addEntitie(pos, new WallTile(x, y, Sprite.wall));
 				break;
@@ -157,6 +203,7 @@ public class FileLevel extends Level {
 						new Kondoria(Coordinates.tileToPixel(x), Coordinates.tileToPixel(y) + Game.TILES_SIZE, _board));
 				_board.addEntitie(pos, new GrassTile(x, y, Sprite.grass));
 				break;
+			// Poder customizado
 			case 'y':
 				layer = new LayeredEntity(x, y,
 						new GrassTile(x, y, Sprite.grass),
@@ -168,44 +215,6 @@ public class FileLevel extends Level {
 
 				_board.addEntitie(pos, layer);
 				break;
-			/*
-			 * case '#':
-			 * _board.addEntitie(pos, new WallTile(x, y, Sprite.wall));
-			 * break;
-			 * case 'b':
-			 * LayeredEntity layer = new LayeredEntity(x, y,
-			 * new GrassTile(x, y, Sprite.grass),
-			 * new BrickTile(x, y, Sprite.brick));
-			 * 
-			 * if (_board.isPowerupUsed(x, y, _level) == false) {
-			 * layer.addBeforeTop(new PowerupBombs(x, y, _level, Sprite.powerup_bombs));
-			 * }
-			 * 
-			 * _board.addEntitie(pos, layer);
-			 * break;
-			 * case 's':
-			 * layer = new LayeredEntity(x, y,
-			 * new GrassTile(x, y, Sprite.grass),
-			 * new BrickTile(x, y, Sprite.brick));
-			 * 
-			 * if (_board.isPowerupUsed(x, y, _level) == false) {
-			 * layer.addBeforeTop(new PowerupSpeed(x, y, _level, Sprite.powerup_speed));
-			 * }
-			 * 
-			 * _board.addEntitie(pos, layer);
-			 * break;
-			 * case 'f':
-			 * layer = new LayeredEntity(x, y,
-			 * new GrassTile(x, y, Sprite.grass),
-			 * new BrickTile(x, y, Sprite.brick));
-			 * 
-			 * if (_board.isPowerupUsed(x, y, _level) == false) {
-			 * layer.addBeforeTop(new PowerupFlames(x, y, _level, Sprite.powerup_flames));
-			 * }
-			 * 
-			 * _board.addEntitie(pos, layer);
-			 * break;
-			 */
 			default:
 				_board.addEntitie(pos, new GrassTile(x, y, Sprite.grass));
 				break;

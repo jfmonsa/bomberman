@@ -475,7 +475,6 @@ public class Board implements IRender {
 			return this._time--;
 	}
 
-	// TODO
 	public static int getPoints() {
 		return _points;
 	}

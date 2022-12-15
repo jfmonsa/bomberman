@@ -8,7 +8,6 @@ import java.sql.Statement;
 
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
-import javax.swing.table.TableModel;
 
 // Interfaz
 import com.carlosflorencio.bomberman.Board;
@@ -22,7 +21,6 @@ import java.awt.Font;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
-import java.awt.BorderLayout;
 
 import javax.swing.JFrame;
 import javax.swing.JTextField;
@@ -46,12 +44,9 @@ public class BaseDatos implements ActionListener {
                     "jdbc:postgresql://localhost:5432/bomberman",
                     "postgres", "123456789");
         } catch (SQLException e) {
-            // TODO Auto-generated catch block
             e.printStackTrace();
         }
-
         gui();
-
     }
 
     public DefaultTableModel update_modelo() {
@@ -72,13 +67,9 @@ public class BaseDatos implements ActionListener {
                 fila[1] = score;
                 modelo.addRow(fila);
             }
-            // TODO
-            // JOptionPane.showMessageDialog(null, barra);
         } catch (SQLException e) {
-            // TODO Auto-generated catch block
             e.printStackTrace();
         } catch (Exception e) {
-            // TODO: handle exception
             e.printStackTrace();
         }
         return modelo;
@@ -98,7 +89,6 @@ public class BaseDatos implements ActionListener {
             tabla.setVisible(true);
 
         } catch (SQLException e) {
-            // TODO Auto-generated catch block
             e.printStackTrace();
         }
     }
@@ -146,11 +136,7 @@ public class BaseDatos implements ActionListener {
         js.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
         js.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
         dialog.add(js);
-
         // dialog.add(tabla);
-
-        // js.setVisible(true);
-        // dialog.add(js);
 
         // Siempre al final xd
         dialog.setVisible(true);

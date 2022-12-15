@@ -151,8 +151,8 @@ public class Game extends Canvas {
 			frames++;
 			if (System.currentTimeMillis() - timer > 1000) { // once per second
 				_frame.setTime(_board.subtractTime());
-				_frame.setPoints(_board.getPoints());
-				_frame.setLives(_board.getLives());
+				_frame.setPoints(Board.getPoints());
+				_frame.setLives(Board.getLives());
 				timer += 1000;
 				_frame.setTitle(TITLE + " | " + updates + " rate, " + frames + " fps");
 				updates = 0;
@@ -195,8 +195,6 @@ public class Game extends Canvas {
 
 	public static void hesoyam() {
 		Game.addPlayerSpeed(0.1); // Aumenta velocidad 10%
-		// Game.LIVES += 3; // Aumenta 3 vidas
-		// Game.POINTS += 1000; // Le da mil puntos
 	}
 
 	// screen delay

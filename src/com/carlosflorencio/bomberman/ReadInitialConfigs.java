@@ -40,12 +40,14 @@ public class ReadInitialConfigs {
                 ReadInitialConfigs.lives = Integer.parseInt(tokens.nextToken());
             }
 
+            // Por si no encuentra el archivo del nivel
             if (!(new File("./res/levels/Level" + number_level + ".txt")).exists()) {
                 // Si el nivel no existe, lo pongo en el nivel 1 por default
                 ReadInitialConfigs.number_level = 1;
             }
             lector.close();
         } catch (FileNotFoundException e) {
+            // si no encuentra el archivo de configuraciones inciales
             new FileInitialConfigsCustomExceptions();
             System.out.println("Archivo configuraciones iniciales no encontrado");
             e.printStackTrace();

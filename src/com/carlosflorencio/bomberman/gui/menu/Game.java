@@ -8,12 +8,10 @@ import java.awt.event.KeyEvent;
 
 import javax.swing.JMenu;
 import javax.swing.JMenuItem;
-import javax.swing.JOptionPane;
 import javax.swing.KeyStroke;
 
 import com.carlosflorencio.bomberman.gui.CodeDialog;
 import com.carlosflorencio.bomberman.gui.Frame;
-import com.carlosflorencio.bomberman.gui.InfoDialog;
 
 public class Game extends JMenu {
 
@@ -61,12 +59,10 @@ public class Game extends JMenu {
 			if (e.getActionCommand().equals("New Game")) {
 				_frame.newGame();
 			}
-			// TODO: Aquí estan los top puntajes
 			if (e.getActionCommand().equals("Top Scores")) {
 				// new InfoDialog(_frame, "Top Scores", "If i had more time..",
 				// JOptionPane.INFORMATION_MESSAGE);
-				// TODO: Matarnos todos :d
-				BaseDatos bd = new BaseDatos();
+				new BaseDatos();
 
 			}
 

@@ -19,12 +19,6 @@ import com.carlosflorencio.bomberman.graphics.Sprite;
 import com.carlosflorencio.bomberman.input.Keyboard;
 import com.carlosflorencio.bomberman.level.Coordinates;
 
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-
-import java.util.Timer;
-import java.util.TimerTask;
-
 public class Player extends Mob {
 
 	private List<Bomb> _bombs;
@@ -54,7 +48,6 @@ public class Player extends Mob {
 			afterKill();
 			return;
 		}
-
 		if (_timeBetweenPutBombs < -7500)
 			_timeBetweenPutBombs = 0;
 		else
@@ -228,7 +221,6 @@ public class Player extends Mob {
 			return false;
 		}
 
-		// TODO
 		if (e instanceof Enemy) {
 			kill();
 			return true;
@@ -236,7 +228,8 @@ public class Player extends Mob {
 		return true;
 	}
 
-	// Variablespara el custom poder
+	// ========================== Funciones creadas para el powerup custom
+	// ================
 	boolean inicioElContadorYa = false;
 	long inicio = 0;
 	long now = 0;
@@ -263,9 +256,8 @@ public class Player extends Mob {
 		return false;
 	}
 
-	public void tiempoAParar() {
-
-	}
+	// ========================== Funciones creadas para el powerup custom
+	// ================
 
 	/*
 	 * |--------------------------------------------------------------------------
@@ -301,9 +293,8 @@ public class Player extends Mob {
 	 * | Mob Sprite
 	 * |--------------------------------------------------------------------------
 	 */
-	// TODO
 	private void chooseSprite() {
-
+		// Si tiene el poder activo, le pongo al Player el Sprite del enemigo (Ballom)
 		if (isCustomPowerupActive() /* && Board.getLives() == 3 */) {
 			switch (_direction) {
 				case 0:
@@ -318,7 +309,7 @@ public class Player extends Mob {
 					break;
 			}
 		}
-		// Si no tiene puesto el poder
+		// Si no tiene puesto el poder lo dejo al Player con su Sprite por default
 		else {
 			switch (_direction) {
 				case 0:

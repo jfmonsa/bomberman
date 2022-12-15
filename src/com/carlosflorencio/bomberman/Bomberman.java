@@ -6,6 +6,7 @@ import com.carlosflorencio.bomberman.gui.Frame;
 public class Bomberman {
 	public static void main(String[] args) throws BombermanException {
 		new ReadInitialConfigs();
-		Frame mainwindow = new Frame();
+		// Frame mainwindow = new Frame();
+		new Frame();
 	}
 }
